@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="album" extends="struts-default">
+		<interceptors>
+			<interceptor name="auth" class="web.interceptor.AuthenticationInterceptor" />
+			<interceptor-stack name="security">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="auth" />
+			</interceptor-stack>
+		</interceptors>
+	
+		<action name="main" class="web.AccountAction">
+			<result name="success">/WEB-INF/jsp/catalog/index.jsp</result>
+			<result name="login">/WEB-INF/jsp/account/login.jsp</result>
+			<interceptor-ref name="security"></interceptor-ref>
+		</action>
+		
+		<action name="loginForm" class="web.AccountAction" method="loginForm">
+			<result name="input">/WEB-INF/jsp/account/login.jsp</result>
+		</action>
+		
+		<action name="registerForm" class="web.AccountAction" method="registerForm">
+			<result name="input">/WEB-INF/jsp/account/register.jsp</result>
+		</action>
+		
+		<action name="login" class="web.AccountAction" method="login">
+			<result name="success">/WEB-INF/jsp/catalog/index.jsp</result>
+			<result name="login">/WEB-INF/jsp/account/login.jsp</result>
+		</action>
+		
+		<action name="register" class="web.AccountAction" method="register">
+			<result name="success">/WEB-INF/jsp/catalog/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/account/register.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>
